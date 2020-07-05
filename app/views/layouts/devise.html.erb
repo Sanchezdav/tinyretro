@@ -11,10 +11,20 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
     <%= render 'shared/alerts' %>
-    <div class="container p-3">
-      <%= yield %>
+    <div class="container pt-6">
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          <div class="has-text-centered mb-5">
+            <h1 class="logo title is-1">Tinyretro</h1>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
