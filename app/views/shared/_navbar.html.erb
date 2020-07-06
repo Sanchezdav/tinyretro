@@ -1,11 +1,11 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-      </a>
+      <%= link_to authenticated_root_path, class: 'navbar-item py-4' do %>
+        <h1 class="logo title is-2">Tinyretro</h1>
+      <% end %>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="mobile-navbar">
+      <a role="button" class="navbar-burger burger mt-4" aria-label="menu" aria-expanded="false" data-target="mobile-navbar">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -14,9 +14,24 @@
 
     <div id="mobile-navbar" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button is-light' %>
+        <p class="navbar-item"><%= current_user.username %></p>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <%= image_tag "#{current_user.avatar}", width: '50' %>
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              About
+            </a>
+            <a class="navbar-item">
+              Jobs
+            </a>
+            <a class="navbar-item">
+              Contact
+            </a>
+            <hr class="navbar-divider">
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'navbar-item' %>
           </div>
         </div>
       </div>

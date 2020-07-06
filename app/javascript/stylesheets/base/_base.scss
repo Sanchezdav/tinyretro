@@ -3,9 +3,20 @@
 html, body {
   background-color: $light-grey;
   min-height: 100%;
-  height: 100%;
 }
 
 body {
   position: relative;
+  min-height: 100vh;
+
+  &#authenticated-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .content {
+      flex: 1;
+      width: 100%;
+    }
+  }
 }

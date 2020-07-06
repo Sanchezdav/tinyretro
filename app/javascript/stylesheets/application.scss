@@ -1,9 +1,10 @@
-@import "abstracts/variables";
+@import 'abstracts/variables';
 
-@import "base/base";
+@import 'base/base';
 
-@import "components/alert";
-@import "components/errors";
-@import "components/logo";
+@import 'components/alert';
+@import 'components/errors';
+@import 'components/logo';
 
-@import "~bulma";
+@import '~bulma';
+@import '@fortawesome/fontawesome-free';

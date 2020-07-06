@@ -10,11 +10,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id="authenticated-body">
     <%= render 'shared/navbar' %>
     <%= render 'shared/alerts' %>
-    <div class="container p-3">
+    <main class="content container py-5">
       <%= yield %>
-    </div>
+    </main>
+    <footer class="py-5 px-5 has-text-right">
+      Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+    </footer>
   </body>
 </html>
