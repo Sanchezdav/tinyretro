@@ -6,8 +6,10 @@ Rails.application.routes.draw do
       root to: 'devise/sessions#new'
     end
   end
-
+  
   authenticated :user do
-    root to: 'home#index', as: :authenticated_root
+    root to: 'organizations#index', as: :authenticated_root
+    resources :organizations
   end
+
 end
