@@ -12,7 +12,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     'fish-2.svg',
     'fox.svg',
     'insect.svg',
-    'tuna.svg'
+    'bear.svg',
+    'cat.svg',
+    'deer.svg',
+    'elephant.svg',
+    'fly.svg',
+    'lion.svg',
+    'panda-bear.svg',
+    'pig.svg',
+    'tiger.svg',
+    'wolf.svg'
   ]
 
   protected
