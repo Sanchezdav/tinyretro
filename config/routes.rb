@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: 'organizations#index', as: :authenticated_root
     resources :organizations
+
+    namespace :api do
+      resources :organizations, only: :create
+    end
   end
 
 end

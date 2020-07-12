@@ -11,7 +11,36 @@ require("channels")
 import "@fortawesome/fontawesome-free/js/all";
 import '../stylesheets/application'
 
+import TurbolinksAdapter from 'vue-turbolinks'
+import Vue from 'vue'
+
+// Import all the macro components of the application
+import * as instances from '../instances'
+import store from '../store'
+import Routes from '../routes/index.js.erb'
+
+Vue.use(TurbolinksAdapter)
+window.Routes = Routes
+
 document.addEventListener('turbolinks:load', () => {
+  // --------- Vue -----------
+  // Initialize available instances
+  Object.keys(instances).forEach((instanceName) => {
+    const instance = instances[instanceName]
+    const elements = document.querySelectorAll(instance.el)
+
+    elements.forEach((element) => {
+      const props = JSON.parse(element.getAttribute('data-props'))
+
+      new Vue({
+        el: element,
+        store,
+        render: h => h(instance.component, { props })
+      })
+    })
+  })
+
+  // --------- Bulma -----------
   let notification = document.querySelector('.alert')
 
   if (notification) {

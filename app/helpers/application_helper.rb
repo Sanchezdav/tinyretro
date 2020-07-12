@@ -7,4 +7,9 @@ module ApplicationHelper
       notice: "is-info"
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
+
+  def serialize(template, options = {})
+    JbuilderTemplate
+      .new(self) { |json| json.partial! template, options }.attributes!
+  end
 end
