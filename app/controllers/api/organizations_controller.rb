@@ -13,7 +13,9 @@ module Api
     private
 
     def organization_params
-      params.require(:organization).permit(:name, :description)
+      params
+        .require(:organization)
+        .permit(:name, :description, teams_attributes: [:id, :name, :description, :_destroy])
     end
   end
 end

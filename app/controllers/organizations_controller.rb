@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = Organization.includes(:teams).order(created_at: :desc)
   end
 
   # GET /organizations/1
@@ -12,29 +12,8 @@ class OrganizationsController < ApplicationController
   def show
   end
 
-  # GET /organizations/new
-  def new
-    @organization = Organization.new
-  end
-
   # GET /organizations/1/edit
   def edit
-  end
-
-  # POST /organizations
-  # POST /organizations.json
-  def create
-    @organization = Organization.new(organization_params)
-
-    respond_to do |format|
-      if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
-        format.json { render :show, status: :created, location: @organization }
-      else
-        format.html { render :new }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /organizations/1

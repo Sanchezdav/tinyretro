@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   authenticated :user do
     root to: 'organizations#index', as: :authenticated_root
-    resources :organizations
+    resources :organizations, except: [:new, :create]
 
     namespace :api do
       resources :organizations, only: :create

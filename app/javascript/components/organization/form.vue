@@ -1,6 +1,6 @@
 <template>
   <div class="px-6 py-5 has-text-left">
-    <h2 class="title is-3">Organization</h2>
+    <h3 class="title is-3">Organization</h3>
     <ul class="errors" v-if="errors.length > 0">
       <li class="errors__item" v-for="(error, index) in errors" :key="index">
         {{ error }}
@@ -19,18 +19,30 @@
             @keyup='validateInput()'>
         </div>
       </div>
-      <div class="field">
-        <label for="name" class="label">Description</label>
-        <div class="control">
-          <textarea 
-            v-model="organization.description" 
-            class="textarea" 
-            rows="3" 
-            placeholder="Add a short description">
-          </textarea>
+      <h5 class="title is-5 mt-5">Teams</h5>
+      <hr />
+      <div v-for="(team, index) in organization.teams_attributes" :key="index">
+        <div v-if="team._destroy == '1'">
+          {{ team.name }} will be removed. <button v-on:click="undoRemove(index)">Undo</button>
         </div>
+        <div v-else>
+          <div class="field">
+            <label for="name" class="label">* Team name</label>
+            <input type="text" id="team_name" class="input mb-1" v-model="team.name" />
+            <a @click="removeTeam(index)" class="has-text-danger">Remove</a>
+          </div>
+        </div>
+        <hr />
       </div>
-      <button :disabled="disabled" class="button is-success is-fullwidth">Create organization</button>
+      <div class="field mt-5">
+        <a @click="addTeam">
+          <i class="fa fa-plus mr-2"></i>
+          Add another team
+        </a>
+      </div>
+      <div class="field mt-5">
+        <button :disabled="disabled" class="button is-success is-fullwidth">Create organization</button>
+      </div>
     </form>
   </div>
 </template>
@@ -42,7 +54,10 @@ export default {
     return {
       organization:{
         name: '',
-        description: ''
+        description: null,
+        teams_attributes: [
+          { id: null, name: '', description: null, _destroy: null }
+        ]
       },
       disabled: true,
     }
@@ -60,6 +75,26 @@ export default {
       } else {
         this.disabled = true
       }
+    },
+    addTeam: function() {
+      this.organization.teams_attributes.push({
+        id: null,
+        name: '',
+        description: null,
+        _destroy: null
+      })
+    },
+    removeTeam: function(index) {
+      let team = this.organization.teams_attributes[index]
+
+      if (team.id == null) {
+        this.organization.teams_attributes.splice(index, 1)
+      } else {
+        this.organization.teams_attributes[index]._destroy = "1"
+      }
+    },
+    undoRemove: function(index) {
+      this.organization.teams_attributes[index]._destroy = null
     },
   },
 }

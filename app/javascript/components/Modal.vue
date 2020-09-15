@@ -49,6 +49,7 @@ export default {
   height: 100vh;
   justify-content: center;
   left: 0;
+  overflow-y: auto;
   position: fixed;
   right: 0;
   top: 0;
